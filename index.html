@@ -13,17 +13,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		<title></title>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	</head>
-	<body style="background-color: red; color: white">
+	<body style="background-color: red; color: white; font-family: Arial, Helvetica, sans-serif">
 		<script type="text/javascript">
 			var dateOfChristmas = (Date.parse("December 25, 2015, 00:00:00")) / 1000;
 			function updateTime(){
 				var time = dateOfChristmas - (Date.now() / 1000);
-				$("#secondsLabel").html(time.toString());
-				setTimeout(updateTime, 1);
+				if (time > 0){
+					$("#secondsLabel").html(time.toString());
+					setTimeout(updateTime, 1);
+				}
+				else 
+					$("#secondsLabel").html("NOW CHRISTMAS");
 			}
 			updateTime();
 		</script>
-		<span id="secondsLabel" style="font-size: 75px; width: 100%; position: absolute; top: calc((100% - 75px)/2); left: 0; font-family: Arial, Helvetica, sans-serif">3000002</span>
+		<span id="secondsLabel" style="font-size: 75px; width: 100%; position: absolute; top: calc((100% - 75px)/2); left: 0">3000002</span>
 		<span style="font-size: 10pt; position: absolute; bottom: 25px; left: 0;  width: 100%; text-align: center;">Merry Christmas. Fork this at <a href="https://github.com/bcwarner/seconds-to-christmas" style="color: green">GitHub</a></span>
 </body>
 </html>
