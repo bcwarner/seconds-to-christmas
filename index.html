@@ -11,11 +11,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <html>
 	<head>
 		<title></title>
+		<meta charset="utf-8">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
 	</head>
 	<body style="background-color: red; color: white; font-family: Arial, Helvetica, sans-serif">
 		<script type="text/javascript">
 			var dateOfChristmas = (Date.parse("December 25, 2015, 00:00:00")) / 1000;
+			var colors = ["rgb(255, 0, 0)", "rgb(0, 255, 0)"];
+			var currentColor = 0;
 			function updateTime(){
 				var time = dateOfChristmas - (Date.now() / 1000);
 				if (time > 0){
@@ -23,11 +27,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					setTimeout(updateTime, 1);
 				}
 				else 
-					$("#secondsLabel").html("NOW CHRISTMAS");
+					$("#secondsLabel").html("IT'S CHRISTMAS");
+			}
+			function animationHandle(){
+				currentColor = (currentColor == 1) ? 0 : 1;
+				$("body").animate({backgroundColor: colors[currentColor]}, 60 * 1000, "linear", animationHandle);
+				$("#githubLink").animate({color: colors[(currentColor == 0) ? 1 : 0]}, 60 * 1000, "linear");
 			}
 			updateTime();
+			animationHandle();
 		</script>
-		<span id="secondsLabel" style="font-size: 75px; width: 100%; position: absolute; top: calc((100% - 75px)/2); left: 0">3000002</span>
-		<span style="font-size: 10pt; position: absolute; bottom: 25px; left: 0;  width: 100%; text-align: center;">Merry Christmas. Fork this at <a href="https://github.com/bcwarner/seconds-to-christmas" style="color: green">GitHub</a></span>
+		<span id="secondsLabel" style="font-size: 75px; width: 100%; position: absolute; top: calc((100% - 75px)/2); left: 0">SITE'S BROKEN</span>
+		<span style="font-size: 10pt; position: absolute; bottom: 25px; left: 0;  width: 100%; text-align: center;">Merry Christmas. Fork this at <a href="https://github.com/bcwarner/seconds-to-christmas" style="color: green" id="githubLink">GitHub</a></span>
 </body>
 </html>
