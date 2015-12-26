@@ -17,7 +17,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	</head>
 	<body style="background-color: red; color: white; font-family: Arial, Helvetica, sans-serif">
 		<script type="text/javascript">
-			var dateOfChristmas = (Date.parse("December 25, 2015, 00:00:00")) / 1000;
+			var now = new Date(); // Used for retrieving specific date details.
+			var yearOfChristmas = (now.getDate() > 25 && now.getMonth() == 11) ? (now.getFullYear() + 1): now.getFullYear();
+			var dateOfChristmas = (Date.parse("December 25 " + yearOfChristmas.toString() + ", 00:00:00")) / 1000;
 			var colors = ["rgb(255, 0, 0)", "rgb(0, 255, 0)"];
 			var currentColor = 0;
 			function updateTime(){
